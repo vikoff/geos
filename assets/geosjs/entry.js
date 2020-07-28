@@ -79,8 +79,19 @@ Entry.prototype.isError = function isError() {
  * @returns {string} Error message
  */
 Entry.prototype.getMessage = function getMessage() {
-    return this.data.hmessage || this.data.message || this.data.pattern || "--none--";
+    return this.escapeHtml(
+        this.data.hmessage || this.data.message || this.data.pattern || "--none--"
+    );
 };
+
+Entry.prototype.escapeHtml = function(text) {
+    return text.toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 /**
  * @returns {Element|HTMLElement} DOM container for entry
  */
@@ -135,15 +146,15 @@ Entry.prototype.getDom = function getDom() {
                         value = value[0];
                     }
 
+                    let valueStr = '';
                     if (Array.isArray(value)) {
-                        html += '<div><span class="var-name">' + name + '</span><span class="var-value">';
                         value.forEach(function (v) {
-                            html += v + '<br/>';
+                            valueStr += self.escapeHtml(v) + '<br/>';
                         });
-                        html += '</span></div>'
                     } else {
-                        html += '<div><span class="var-name">' + name + '</span><span class="var-value">' + value + '</span></div>';
+                        valueStr = self.escapeHtml(value);
                     }
+                    html += '<div><span class="var-name">' + name + '</span><span class="var-value">' + valueStr + '</span></div>';
                 });
                 html += '</div>';
                 // Additional section - for exceptions
