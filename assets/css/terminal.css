@@ -22,7 +22,7 @@ body {margin: 0; padding: 0; background-color: black; color: white;}
 
 #topFrame .logo { color: #027b09; font-size: 33px; line-height: 15px; vertical-align: bottom; margin-right: 15px; font-family: sans-serif; }
 
-#logWindow {font: normal 11pt "LoadedFont"; padding-top: 33px; }
+#logWindow {font: normal 11pt "LoadedFont"; padding-top: 33px; padding-bottom: 90vh; }
 #logWindow .group {padding: 1px;}
 #logWindow .group .header {padding: 0 5px; white-space: nowrap; }
 #logWindow .group .header .fa {font-size: 10pt;}
@@ -46,7 +46,7 @@ body {margin: 0; padding: 0; background-color: black; color: white;}
 #logWindow .group .header .commands .active { color: white; }
 #logWindow .group .header .tail { color: #455d45; }
 
-#logWindow .group .entry {margin-left: 1.5em; padding-left: 5px; white-space: nowrap;}
+#logWindow .group .entry {margin-left: 1.5em; padding-left: 5px; }
 #logWindow .group .entry span.index { color: #999999; }
 #logWindow .group .entry span.time { color: #666666; cursor: pointer; margin-right: 0.5em; }
 #logWindow .group .entry:hover span.time { color: #66d9ef; }
@@ -69,7 +69,7 @@ body {margin: 0; padding: 0; background-color: black; color: white;}
 #logWindow .group .entry .details { margin-left: 3em; padding: 0 5px 15px 0; display: none; }
 #logWindow .group .entry .details > div.table > div {display: table-row;}
 #logWindow .group .entry .details > div.table > div > span {display: table-cell;}
-#logWindow .group .entry .var-value { color: #027b09; }
+#logWindow .group .entry .var-value { color: #027b09; white-space: pre; }
 #logWindow .group .entry .var-value-sql {color: #887CAF; }
 #logWindow .group .entry .var-value-int {color: #66d9ef; }
 #logWindow .group .entry .var-value-float {color: #66d9ef; }
