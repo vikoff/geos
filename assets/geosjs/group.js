@@ -151,7 +151,7 @@ window.Group = (function () {
         this.$cntErr.innerText = this.count.err;
         this.$cntSkip.innerText = this.count.skip;
         this.$time.innerText = entry.time.toISOString().slice(11, 19);
-        this.$tail.innerText = entry.getMessage();
+        this.$tail.innerHTML = entry.getMessage();
 
         if (this.open && !skipEntry) {
             if (insertBeforeEntry === null) {

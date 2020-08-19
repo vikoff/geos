@@ -85,7 +85,7 @@ Entry.prototype.getMessage = function getMessage() {
 };
 
 Entry.prototype.escapeHtml = function(text) {
-    return text.toString()
+    return (text || '').toString()
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -112,8 +112,12 @@ Entry.prototype.getDom = function getDom() {
         this.$ = $;
         let $unfold = $.querySelector(".unfold");
         let self = this;
-        $.querySelector('.line .time').addEventListener('click', function () {
+        $.querySelector('.entry .line .time').addEventListener('click', function () {
             self.open = !self.open;
+
+            // add class to container
+            this.closest('.entry').classList[self.open ? 'add' : 'remove']('opened');
+
             if (self.open) {
                 // Current state - open, rendering keys
 
@@ -179,13 +183,11 @@ Entry.prototype.getDom = function getDom() {
                     html += '</div>'
                 }
                 $unfold.innerHTML = html;
-                $unfold.style.display = 'table';
             } else {
                 // Current state - closed, removing rendered items
                 while ($unfold.hasChildNodes()) {
                     $unfold.removeChild($unfold.firstChild);
                 }
-                $unfold.style.display = 'none';
             }
         });
     }

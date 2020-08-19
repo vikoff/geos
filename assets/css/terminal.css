@@ -15,7 +15,7 @@ Cyan: #66d9ef
 body {margin: 0; padding: 0; background-color: black; color: white;}
 
 #topFrame { border-bottom: 2px solid #027b09; padding: 2px 5px; margin-bottom: 3px; background-color: #012703; overflow: hidden; height: 25px; position: fixed; top: 0; left: 0; right: 0; }
-#topFrame .faBtn { cursor:pointer; display: inline-block; padding: 2px 4px; font-size: 16pt; color: white; background-color: #1d5682; vertical-align: middle; }
+#topFrame .faBtn { cursor:pointer; display: inline-block; padding: 2px 4px; font-size: 16pt; color: white; background-color: #1d5682; vertical-align: middle; text-decoration: none; }
 #topFrame .faBtn:hover { background-color: white; color: black; }
 #topFrame .faBtn.active { background-color: #a6e22e; }
 #topFrame .faBtn.inactive { background-color: #666666; }
@@ -33,7 +33,8 @@ body {margin: 0; padding: 0; background-color: black; color: white;}
 #logWindow .group .header > .app {color: #1d8255; display: inline-block; margin-right: 0.5em;}
 #logWindow .group .header > .app:before {content: '@'; color: #169a5f;}
 #logWindow .group .header > .time {color: #666666; cursor: pointer; }
-#logWindow .group .header:hover > .time { color: #66d9ef; }
+#logWindow .group .header:hover > .time,
+#logWindow .group.selected .header > .time { color: #66d9ef; }
 #logWindow .box { display: inline-block; margin-right: .5em; }
 #logWindow .group .header > .toggle { color: #fb660a; cursor: pointer; }
 #logWindow .group .header > .toggle > .count { color: #66d9ef; }
@@ -44,15 +45,17 @@ body {margin: 0; padding: 0; background-color: black; color: white;}
 #logWindow .group .header .entries { color: #666666; margin-left: 0.5em; }
 #logWindow .group .header .entries.hasErrors { color: crimson; }
 #logWindow .group .header .commands .active { color: white; }
-#logWindow .group .header .tail { color: #455d45; }
+#logWindow .group .header .tail { color: #455d45; white-space: nowrap; }
 
 #logWindow .group .entry {margin-left: 1.5em; padding-left: 5px; }
 #logWindow .group .entry span.index { color: #999999; }
 #logWindow .group .entry span.time { color: #666666; cursor: pointer; margin-right: 0.5em; }
+#logWindow .group .entry.opened span.time,
 #logWindow .group .entry:hover span.time { color: #66d9ef; }
 #logWindow .group .entry span.app { color: #455d45; display: inline-block; margin-left: 0.5em; }
 #logWindow .group .entry span.app:before { content: '@'; color: #3b4e3b; }
-#logWindow .group .entry span.message { color: #AAA; }
+#logWindow .group .entry span.message { color: #AAA; white-space: nowrap; }
+#logWindow .group .entry.opened span.message { white-space: normal; }
 #logWindow .group .entry span.message .string { color: #7ca223; }
 #logWindow .group .entry span.message .boolean { color: #97004c; }
 #logWindow .group .entry span.message .number { color: #57bcd1; }
@@ -67,9 +70,11 @@ body {margin: 0; padding: 0; background-color: black; color: white;}
 #logWindow .group .entry-emergency span.message {color: crimson;}
 
 #logWindow .group .entry .details { margin-left: 3em; padding: 0 5px 15px 0; display: none; }
+#logWindow .group .entry.opened .details { display: table; }
+
 #logWindow .group .entry .details > div.table > div {display: table-row;}
 #logWindow .group .entry .details > div.table > div > span {display: table-cell;}
-#logWindow .group .entry .var-value { color: #027b09; white-space: pre; }
+#logWindow .group .entry .var-value { color: #027b09; white-space: pre-wrap; }
 #logWindow .group .entry .var-value-sql {color: #887CAF; }
 #logWindow .group .entry .var-value-int {color: #66d9ef; }
 #logWindow .group .entry .var-value-float {color: #66d9ef; }

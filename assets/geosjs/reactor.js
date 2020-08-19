@@ -171,7 +171,8 @@ Reactor.prototype.init = function init(debugMode) {
     );
 
     var self = this;
-    this.$buttonConnect.addEventListener('click', function () {
+    this.$buttonConnect.addEventListener('click', function (e) {
+        e.preventDefault();
         if (self._socket !== null) {
             self.debug("Manual disconnect requested");
             self.$buttonConnect.classList.remove('active');
@@ -183,7 +184,8 @@ Reactor.prototype.init = function init(debugMode) {
             self.connect();
         }
     });
-    this.$buttonClear.addEventListener('click', function () {
+    this.$buttonClear.addEventListener('click', function (e) {
+        e.preventDefault();
         var newMap = {};
         Object.keys(self._groups).forEach(function (name) {
             var group = self._groups[name];
@@ -198,7 +200,10 @@ Reactor.prototype.init = function init(debugMode) {
         self.total = 0;
     });
 
-    this.$buttonFilters.addEventListener('click', this.toggleDisplayFilters.bind(this));
+    this.$buttonFilters.addEventListener('click', function(e) {
+        e.preventDefault();
+        self.toggleDisplayFilters();
+    });
 
     this.connect();
     if (debugMode) {
